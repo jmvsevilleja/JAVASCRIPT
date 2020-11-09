@@ -1,7 +1,7 @@
-console.log("--Matching .test--");
+console.log("--Matching .test(string)--");
 let myString = "Jess has a pet cat named Pus";
-let fccRegex = /Pus/; // test if Pus
-let fccRegexOr = /(cat|dog)/; // test if two patterns () - Grouping
+let fccRegex = /Pus/; // test if Pus is anywhere in a string
+let fccRegexOr = /(cat|dog)/; // test if two patterns () - Grouping - Reuse group ()\1()\2
 let fccRegexi = /pus/i; // test if pus with ignore case
 console.log("Literal Matching:", myString, fccRegex, fccRegex.test(myString));
 console.log("Or Matching: ", myString, fccRegexOr, fccRegexOr.test(myString));
@@ -22,7 +22,7 @@ let extractStr = "Extract the word 'coding' from this coding string.";
 let codingRegex = /coding/; // get Literal coding
 console.log("Get Matches:", extractStr, codingRegex, extractStr.match(codingRegex));
 
-console.log("#Get with Global Matches .match");
+console.log("#Get with Global Matches .match(regex)");
 let twinkleStar = "Twinkle, twinkle, little star";
 let starRegex = /Twinkle/gi; // all twinkle
 console.log("Get Global Matches:", twinkleStar, starRegex, twinkleStar.match(starRegex));
@@ -64,16 +64,31 @@ let quit = "qu";
 let noquit = "qu";
 let quRegex = /q(?=u)/;
 let qRegex = /q(?!u)/;
-console.log("Positive:", quit, quRegex, quit.match(quRegex)); // Returns ["q"]
-console.log("Negative:", noquit, quRegex, noquit.match(qRegex)); // Returns ["q"]
+console.log("Positive:", quit, quRegex, quit.match(quRegex));
+console.log("Negative:", noquit, quRegex, noquit.match(qRegex));
 //looks for between 3 and 6 characters and at least one number:
 let password = "abc123";
 let checkPass = /(?=\w{3,6})(?=\D*\d)/;
-console.log("3 and 6 characters and at least one number:", password, checkPass, checkPass.test(password)); // Returns ["q"]
+console.log("3 and 6 characters and at least one number:", password, checkPass, checkPass.test(password));
+
+console.log("--Search and Replace .replace(regex, string|function|()$1()$2)--");
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+console.log("Search silber and replace blue:", wrongText, silverRegex, wrongText.replace(silverRegex, "blue"));
+
+let str = "one two three";
+let fixRegex = /(\w+)\s(\w+)\s(\w+)/; //group words separated by space
+let replaceText = "$3 $2 $1"; //replacement string with $1 - first group
+console.log("Search one two three and replace three two one:", str, fixRegex, str.replace(fixRegex, replaceText));
+
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s*|\s*$/g; // start with string or end with string /g - global iterative search
+console.log("Search white space at start and end of a string:", hello, wsRegex, hello.replace(wsRegex, ''));
+
 
 console.log("--Excersise--");
 let letterCriminals = "P6P2P7P4P5CCCCCP3P1"
-let reCriminals = /C+/g; // find capital C one or many in a string
+let reCriminals = /C+/g; // find capital C one or many in a string /g - global iterative search
 console.log("Literal one or many:", letterCriminals, reCriminals, letterCriminals.match(reCriminals));
 
 /*
@@ -94,12 +109,19 @@ match passwords that are greater than 5 characters long,
 do not begin with numbers, and have two consecutive digits.
 */
 let sampleWord = "bana12";
-let pwRegex = /^\D(?=\w{5,})(?=\w*\d{2})/; // Change this line
+let pwRegex = /^\D(?=\w{5,})(?=\w*\d{2})/; // First number, lookahead any 5 or more string, lookahead for any string with 2 digits
 console.log("Positive lookaheads Username:", sampleWord, pwRegex, pwRegex.test(sampleWord));
 
 /* 
 Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner and it should make concessions for middle names.
 */
 let myName = "Eleanor T. Roosevelt";
-let myRegex = /(Franklin|Eleanor)( \w.)? Roosevelt/i; // Change this line
+let myRegex = /(Franklin|Eleanor)( [A-Z].)? Roosevelt/i; // Start with Franklin or Eleanor, any letter middle name, End with Roosevelt
 console.log("Grouping and middle names:", myName, myRegex, myRegex.test(myName));
+
+/* 
+Use capture groups in reRegex to match numbers that are repeated only three times in a string, each separated by a space.
+*/
+let repeatNum = "42 42 42 42";
+let reRegex = /^(\d+)(\s)\1\2\1$/; // start wiith number, (number)(space) reuse group1, reuse group2, reuse group1 and should end in group1
+console.log("Reuse Patterns Using Capture Groups:", repeatNum, reRegex, reRegex.test(repeatNum));
