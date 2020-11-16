@@ -4,14 +4,17 @@ console.log('--console.log()--');
 console.log('test', 'test', 'test');
 
 console.log('--typeof variable--');
+let bool = true;
+console.log(typeof bool);
 let seven = 7.1;
 console.log(typeof seven);
-let three = "3";
-console.log(typeof three);
+let one = "1";
+console.log(typeof one);
 let object = []; // {}
 console.log(typeof object);
 console.log(typeof alert); // function
-console.log(seven + three);
+console.log('Concat strings', seven + one); // concat string
+console.log('Operation', seven + (one * 1)); // convert string to number
 
 console.log('--Common Bugs--');
 console.log('Catch Misspelled Variable and Function Names', 'recievables vs receivables');

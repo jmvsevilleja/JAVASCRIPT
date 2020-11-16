@@ -1,6 +1,3 @@
-console.log('--Data Types--');
-console.log('string, number, booleans, undefined, null');
-
 console.log('--Data Structure--');
 console.log('--Arrays--');
 let unshiftArray = [1, 2, 3];
@@ -19,7 +16,7 @@ console.log('Array remove/replace splice(start index, count, replace) - last rem
 let sliceArray = [1, 2, 3, 4]
 console.log('Array copy/extract slice(start index, stop index, replace) - extract:', sliceArray.slice(1, 3), sliceArray);
 
-let thisArray = [true, true, undefined, false, null];
+let thisArray = [true, 0, true, undefined, false, null];
 let thatArray = [1, ...thisArray, 2];
 console.log('Spread Operator:', thisArray, thatArray);
 
@@ -31,7 +28,12 @@ thatArray.forEach(function (item, index) {
     if (index % 2 == 0)
         newArray.push(item);
 });
-console.log('forEach:', newArray);
+console.log('Iiterate forEach:', newArray);
+
+console.log('Iterate Array.map(function(){}) Method: Replace falsy to "falsy"', newArray.map(item => (item) ? item : 'falsy'));
+
+console.log('Iterate Array.find(function(){}) Method: Return True value: ', newArray.find(item => !(item)));
+
 
 
 console.log('--Objects--');
