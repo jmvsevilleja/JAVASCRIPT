@@ -18,7 +18,7 @@ function filterArray(arr) {
 
 console.log('Iterate and Filter Array that is Truthy', filterArray([7, "ate", "", false, 9]));
 
-// Return the lowest index at which a value (second argument) should be inserted into an array
+// Return the lowest index(count) at which a value (second argument) should be inserted into an array
 function getIndexToIns(arr, num) {
     return arr.filter(item => item < num).length;
 }
@@ -26,3 +26,14 @@ function getIndexToIns(arr, num) {
 console.log('Iterate and Filter item less than num, Count items as Index: getIndexToIns([40, 60], 50): ', getIndexToIns([40, 60], 50));
 
 
+// Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+function mutation(arr) {
+    return arr[1]
+        .toLowerCase()
+        .split('')
+        .every(function (letter) {
+            return arr[0].toLowerCase().indexOf(letter) != -1;
+        });
+}
+
+console.log('Loop each character and check string:', ["hello", "Hey"], mutation(["hello", "Hey"]));
