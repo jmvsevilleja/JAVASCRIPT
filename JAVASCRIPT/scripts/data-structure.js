@@ -14,7 +14,7 @@ let spliceArray = [1, 2, 3, 4]
 console.log('Array remove/replace splice(start index, count, replace) - last removed:', spliceArray.splice(1, 2, 'x', 'y', 'z'), spliceArray);
 
 let sliceArray = [1, 2, 3, 4]
-console.log('Array copy/extract slice(start index, stop index, replace) - extract:', sliceArray.slice(1, 3), sliceArray);
+console.log('Array copy/extract slice(start index, stop index) - extract:', sliceArray.slice(1, 100), sliceArray);
 
 let thisArray = [true, 0, true, undefined, false, null];
 let thatArray = [1, ...thisArray, 2];

@@ -37,3 +37,14 @@ function mutation(arr) {
 }
 
 console.log('Loop each character and check string:', ["hello", "Hey"], mutation(["hello", "Hey"]));
+
+//Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+function chunkArrayInGroups(arr, size) {
+    let groups = [];
+    for (var i = 0; i < arr.length; i += size) {
+        groups.push(arr.slice(i, i + size));
+    }
+    return groups;
+}
+
+console.log('Loop each array and slice:', ["a", "b", "c", "d", "e"], chunkArrayInGroups(["a", "b", "c", "d", "e"], 2));
