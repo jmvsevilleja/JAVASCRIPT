@@ -32,9 +32,14 @@ console.log('Iiterate forEach:', newArray);
 
 console.log('Iterate Array.map(function(){}) Method: Replace falsy to "falsy"', newArray.map(item => (item) ? item : 'falsy'));
 
-console.log('Iterate Array.find(function(){}) Method: Return True value: ', newArray.find(item => !(item)));
+console.log('Iterate Array.find(function(){}) Method: Return First True value: ', newArray.find(item => !(item)));
 
+console.log('Iterate Array.filter(function(){}) Method: Return True values: ', newArray.filter(item => !(item)));
 
+const reduceNumbers = [1, 2, 3, 4];
+console.log('Iterate Process Array.reduce(function(){},0) Method: Return Sum value starting from 0: ', reduceNumbers.reduce(function (result, item) {
+    return result + item;
+}, 0));
 
 console.log('--Objects--');
 
