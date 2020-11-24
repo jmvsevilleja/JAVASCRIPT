@@ -22,7 +22,7 @@ console.log('Spread Operator:', thisArray, thatArray);
 
 console.log('Index Of false: (-1 if not found)', false, thatArray.indexOf(false), '"false"', thatArray.indexOf('false'));
 
-console.log('--Iterate Array--');
+console.log('--Iterate Array/Objects--');
 let newArray = [];
 thatArray.forEach(function (item, index) {
     if (index % 2 == 0)
@@ -30,13 +30,14 @@ thatArray.forEach(function (item, index) {
 });
 console.log('Iiterate forEach:', newArray);
 
+console.log('Iterate Array.map(function(){}) Method: Iterate and return item', newArray.map(item => item));
 console.log('Iterate Array.map(function(){}) Method: Replace falsy to "falsy"', newArray.map(item => (item) ? item : 'falsy'));
 
 console.log('Iterate Array.find(function(){}) Method: Return First True value: ', newArray.find(item => !(item)));
 
 console.log('Iterate Array.filter(function(){}) Method: Return True values: ', newArray.filter(item => !(item)));
 
-console.log('Iterate Array.every(function(){}) Method: Return True if items are true: ', newArray, newArray.every(item => (item)));
+console.log('Iterate Array.every(function(){}) Method: Return True if items are all true: ', newArray.filter(item => !(item)), newArray.filter(item => !(item)).every(item => !(item)));
 
 
 const reduceNumbers = [1, 2, 3, 4];
