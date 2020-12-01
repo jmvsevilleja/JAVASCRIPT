@@ -47,5 +47,16 @@ console.log('Concat combine Array:', arr.concat([4, 5, 6]), arr); // arr is not 
 console.log('Push mutates the Array:', arr.push(4, 5, 6), arr); // arr is mutated
 
 
+// Challenge
+// square of only the positive integers
+const squareList = arr => {
+    // Only change code below this line
+    let newArr = arr.filter(num => num > 0 && num % 1 == 0).map(num => num * num);
+    return newArr;
+    // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3.7, -5, 3, 10, 12.5, 7, -4.5, -17, 0.3]);
+console.log(squaredIntegers);
 
 
