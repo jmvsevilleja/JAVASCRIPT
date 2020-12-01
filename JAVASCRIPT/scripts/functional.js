@@ -7,7 +7,7 @@ console.log('function call add(1,2):', add(1, 2));
 // Higher order functions - high_order_function(callback); - The functions that take a function as an argument, or return a function as a return value
 // lambda - variable = () => 'return'; - functions are passed in to another function or returned from another function, then those functions which gets passed in or returned
 
-// Functional Programming
+// Standard Functional Programming
 //  1 Avoid Mutations and Side Effects Using Functional Programming ex. array.splice();
 //  Don't alter a variable or object - create new variables and objects and return them if need be from a function. Hint: using something like var newArr = arrVar, where arrVar is an array will simply create a reference to the existing variable and not a copy. So changing a value in newArr would change the value in arrVar.
 //  2 Pass Arguments to Avoid External Dependence in a Function
@@ -41,6 +41,10 @@ Array.prototype.myFilter = function (callback) {
 };
 console.log('Iterate and Filter odd numbers using myFilter: ', s, s.myFilter(item => item % 2 === 1)); //lambda
 
+// PUSH vs CONCAT
+var arr = [1, 2, 3];
+console.log('Concat combine Array:', arr.concat([4, 5, 6]), arr); // arr is not changed - functional
+console.log('Push mutates the Array:', arr.push(4, 5, 6), arr); // arr is mutated
 
 
 

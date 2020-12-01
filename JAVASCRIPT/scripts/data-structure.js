@@ -44,9 +44,9 @@ console.log('Iterate Array.filter(function(){}) Method: Return True values: ', n
 console.log('Iterate Array.every(function(){}) Method: Return True if items are all true: ', newArray.filter(item => !(item)), newArray.filter(item => !(item)).every(item => !(item)));
 
 const reduceNumbers = [1, 2, 3, 4];
-console.log('Iterate Process Array.reduce(function(){},0) Method: Return Sum value starting from 0: ', reduceNumbers, reduceNumbers.reduce(function (result, item) {
+console.log('Iterate Process Array.reduce(function(){},0) Method: Return Sum value starting from 0: ', reduceNumbers, reduceNumbers.reduce(function (result, item, index, items) {
     return result + item;
-}, 0));
+}, 0)); //starting point
 
 console.log('--Objects--');
 
