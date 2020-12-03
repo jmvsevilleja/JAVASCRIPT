@@ -47,6 +47,10 @@ console.log('Concat combine Array:', arr.concat([4, 5, 6]), arr); // arr is not 
 console.log('Push mutates the Array:', arr.push(4, 5, 6), arr); // arr is mutated
 
 
+// Sorting
+var str = 'ACBacb';
+console.log('Sort mutates the Array:', str, str.split('').sort((a, b) => a === b ? 0 : a > b ? 1 : -1), str); // str is mutated
+
 // Challenge
 // square of only the positive integers
 const squareList = arr => {
@@ -58,5 +62,6 @@ const squareList = arr => {
 
 const squaredIntegers = squareList([-3.7, -5, 3, 10, 12.5, 7, -4.5, -17, 0.3]);
 console.log(squaredIntegers);
+
 
 

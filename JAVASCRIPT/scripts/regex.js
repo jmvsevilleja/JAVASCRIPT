@@ -35,7 +35,7 @@ let alphabetRegex = /[a-z]/gi; // get letters
 console.log("Character Range:", quoteSample, alphabetRegex, quoteSample.match(alphabetRegex));
 let numberRegex = /[0-9]/gi; // get numbers
 console.log("Number Range:", quoteSample, numberRegex, quoteSample.match(numberRegex));
-let alphaNumericRegex = /\w/g; // shorthand character classes. \W for non alphanumeric characters
+let alphaNumericRegex = /\w/g; // shorthand character classes. [^A-Za-z0-9_] \W for non alphanumeric characters
 console.log("Alphanumeric Characters Range:", quoteSample, alphaNumericRegex, quoteSample.match(alphaNumericRegex));
 let numericRegex = /\d/g; // shorthand character classes. \D non numeric characters
 console.log("Numbers Range:", quoteSample, numericRegex, quoteSample.match(numericRegex));
