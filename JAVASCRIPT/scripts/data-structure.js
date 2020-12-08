@@ -45,6 +45,11 @@ console.log('Iterate Array.every(function(){}) Method: Return True if items are 
 
 console.log('Iterate Array.some(function(){}) Method: Return True if any of the items is true: ', newArray, newArray.some(item => (item)));
 
+const pets = ['cat', 'dog', 'bat'];
+console.log(pets, 'True(cat):', pets.includes('cat'), 'False (at):', pets.includes('at'));
+
+
+
 
 const reduceNumbers = [1, 2, 3, 4];
 console.log('Iterate Process Array.reduce(function(){},0) Method: Return Sum value starting from 0: ', reduceNumbers, reduceNumbers.reduce(function (result, item, index, items) {
