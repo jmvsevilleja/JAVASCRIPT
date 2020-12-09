@@ -48,13 +48,11 @@ console.log('Iterate Array.some(function(){}) Method: Return True if any of the 
 const pets = ['cat', 'dog', 'bat'];
 console.log(pets, 'True(cat):', pets.includes('cat'), 'False (at):', pets.includes('at'));
 
-
-
-
 const reduceNumbers = [1, 2, 3, 4];
 console.log('Iterate Process Array.reduce(function(){},0) Method: Return Sum value starting from 0: ', reduceNumbers, reduceNumbers.reduce(function (result, item, index, items) {
     return result + item;
 }, 0)); //starting points
+
 
 console.log('--Objects--');
 
@@ -66,6 +64,7 @@ const tekkenCharacter = {
 console.log('Access via Object.dot notation:', tekkenCharacter.player);
 console.log('Access via Object["bracket"]:', tekkenCharacter['fighting style']);
 console.log('Delete Object.property:', delete tekkenCharacter.human, tekkenCharacter);
+
 console.log('Object.hasOwnProperty("player"):', tekkenCharacter.hasOwnProperty('player'));
 console.log('"player" in Object:', 'player' in tekkenCharacter);
 
@@ -79,3 +78,5 @@ for (let property in tekkenCharacter) {
 };
 console.log('for(let property in Object):', newPlayer);
 console.log('Object keys:', Object.keys(tekkenCharacter));
+console.log('Object values:', Object.values(tekkenCharacter));
+console.log('Object entries:', Object.entries(tekkenCharacter));
