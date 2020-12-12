@@ -60,12 +60,14 @@ let countWhiteSpace = /\s/g; //[\r\t\f\n\v] White space, return, tab, formfeed, 
 console.log("Match Whitespace:", quoteSample, countWhiteSpace, quoteSample.match(countWhiteSpace));
 
 //Positive and Negative Lookahead
-let quit = "qu";
-let noquit = "qu";
-let quRegex = /q(?=u)/;
-let qRegex = /q(?!u)/;
+let quit = "quit";
+let noquit = "quit";
+let quRegex = /i(?=t)/;
+let qRegex = /i(?!t)/;
 console.log("Positive:", quit, quRegex, quit.match(quRegex));
-console.log("Negative:", noquit, quRegex, noquit.match(qRegex));
+console.log("Split Capital Cases:", 'TheFox', 'TheFox'.split(/(?=[A-Z])/));
+console.log("Negative:", noquit, qRegex, noquit.match(qRegex));
+console.log("Split Lower Cases:", 'TheFox', 'TheFox'.split(/(?![A-Z])/));
 //looks for between 3 and 6 characters and at least one number:
 let password = "abc123";
 let checkPass = /(?=\w{3,6})(?=\D*\d)/;
@@ -78,7 +80,7 @@ console.log("Search silber and replace blue:", wrongText, silverRegex, wrongText
 
 let str = "one two three";
 let fixRegex = /(\w+)\s(\w+)\s(\w+)/; //group words separated by space
-let replaceText = "$3 $2 $1"; //replacement string with $1 - first group
+let replaceText = "$3 $2 $1 $&"; //replacement string with $1 - first group $& - all
 console.log("Search one two three and replace three two one:", str, fixRegex, str.replace(fixRegex, replaceText));
 
 let hello = "   Hello, World!  ";
@@ -86,7 +88,7 @@ let wsRegex = /^\s*|\s*$/g; // start with string or end with string /g - global 
 console.log("Search white space at start and end of a string:", hello, wsRegex, hello.replace(wsRegex, ''));
 
 
-console.log("--Excersise--");
+console.log("--Excercise--");
 let letterCriminals = "P6P2P7P4P5CCCCCP3P1"
 let reCriminals = /C+/g; // find capital C one or many in a string /g - global iterative search
 console.log("Literal one or many:", letterCriminals, reCriminals, letterCriminals.match(reCriminals));
@@ -112,14 +114,14 @@ let sampleWord = "bana12";
 let pwRegex = /^\D(?=\w{5,})(?=\w*\d{2})/; // First number, lookahead any 5 or more string, lookahead for any string with 2 digits
 console.log("Positive lookaheads Username:", sampleWord, pwRegex, pwRegex.test(sampleWord));
 
-/* 
+/*
 Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner and it should make concessions for middle names.
 */
 let myName = "Eleanor T. Roosevelt";
 let myRegex = /(Franklin|Eleanor)( [A-Z].)? Roosevelt/i; // Start with Franklin or Eleanor, any letter middle name, End with Roosevelt
 console.log("Grouping and middle names:", myName, myRegex, myRegex.test(myName));
 
-/* 
+/*
 Use capture groups in reRegex to match numbers that are repeated only three times in a string, each separated by a space.
 */
 let repeatNum = "42 42 42 42";
