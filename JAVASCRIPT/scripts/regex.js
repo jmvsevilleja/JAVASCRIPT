@@ -76,7 +76,7 @@ console.log("3 and 6 characters and at least one number:", password, checkPass, 
 console.log("--Search and Replace .replace(regex, string|function|()$1()$2)--");
 let wrongText = "The sky is silver.";
 let silverRegex = /silver/;
-console.log("Search silber and replace blue:", wrongText, silverRegex, wrongText.replace(silverRegex, "blue"));
+console.log("Search silver and replace blue:", wrongText, silverRegex, wrongText.replace(silverRegex, "blue"));
 
 let str = "one two three";
 let fixRegex = /(\w+)\s(\w+)\s(\w+)/; //group words separated by space
