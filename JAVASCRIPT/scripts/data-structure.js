@@ -12,19 +12,23 @@ console.log('Array remove pop() - last index:', popArray.pop(), popArray);
 
 let spliceArray = [1, 2, 3, 4]
 console.log('Array remove/replace splice(start index, count, replace) - remove/replace:', spliceArray.splice(1, 2, 'x'), spliceArray);
-// Splice changes the original array
+// Splice changes the original array, destructive
 
 let sliceArray = [1, 2, 3, 4]
 console.log('Array copy/extract slice(start index, stop index) - extract:', sliceArray.slice(1, 2), sliceArray);
-// Slicing doesn't change the original array
+// Slicing doesn't change the original array, non-destructive
 
 let thisArray = [true, 0, true, undefined, false, null];
 let thatArray = [1, ...thisArray, 2];
 console.log('Spread Operator:', thisArray, thatArray);
 // Spread Operator creates a new array instead of reference - newArray = oldArray
 
-console.log('Index Of false: (-1 if not found)', false, thatArray.indexOf(false), '"false"', thatArray.indexOf('false'));
+console.log('Index Of false: (-1 if not found)', thatArray, thatArray.indexOf(false), '"false"', thatArray.indexOf('false'));
 // IndexOf finds the position of a search
+console.log('findIndex Of false: (-1 if not found)', thatArray, thatArray.findIndex(item => item === 'xfalse'));
+// findIndex finds the position of a search by anonymous function
+
+
 
 console.log('--Iterate Array/Objects--');
 let newArray = [];
