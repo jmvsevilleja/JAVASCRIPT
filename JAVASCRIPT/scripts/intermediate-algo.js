@@ -178,3 +178,142 @@ function sumPrimes(num) {
 }
 
 console.log('Sum of all Prime Number:', sumPrimes(10));
+
+// Smallest Common Multiple
+function smallestCommons(arr) {
+    let args = arr.sort((a, b) => a - b)
+    let a = args[0];
+    let b = args[1];
+
+    for (let n = a; true; n++) {
+        let common = true;
+        for (let i = a; i <= b; i++) {
+            //console.log(n%i, n, i);
+            if (n % i != 0) {
+                common = false;
+                break;
+            }
+        }
+        if (common) {
+            return n
+        }
+    }
+    return 0;
+}
+
+console.log('Smallest Common Multiple:', smallestCommons([2, 10]));
+
+
+//Return the rest of the array once the condition is satisfied, otherwise, arr should be returned as an empty array.
+function dropElements(arr, func) {
+    return arr.slice(arr.findIndex(func) >= 0 ? arr.findIndex(func) : arr.length);
+    // let index = arr.indexOf(arr.find(item => func(item)));
+    // if (index >= 0) {
+    //     return arr.slice(index);
+    // }
+    // return [];
+}
+
+console.log('dropElements', dropElements([1, 2, 3], function (n) { return n > 0; }));
+
+// Flatten a nested array. You must account for varying levels of nesting.
+function steamrollArray(arr, flatArr = []) {
+    console.log(arr)
+    console.log(flatArr)
+    // iterate thru arr
+    arr.map(item => {
+        // check if each item in arr is array
+        if (item instanceof Array)
+            // call the function and pass the array to check again
+            steamrollArray(item, flatArr);
+        else
+            // push flatArr preserving previous content
+            flatArr.push(item);
+    });
+    // return consolidated flatted items afterward
+    return flatArr
+}
+
+console.log('Flat Array using recursion: ', steamrollArray([3, [[4]]]));
+
+
+//Return an English translated sentence of the passed binary string.
+function binaryAgent(str) {
+    return str.split(' ') //Split string in array of binary chars
+        .map(item => String.fromCharCode(parseInt(item, 2))) //Map every binary char to base 10 to real char
+        .join('');
+}
+
+console.log('binary to string:', binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
+console.log('parseInt(string, base)', "parseInt('65', 10)", parseInt('65', 10)); // string to integer
+
+// Intermediate Algorithm Scripting: Everything Be True
+// Check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+// In other words, you are given an array collection of objects. The predicate pre will be an object property and you need to return true if its value is truthy. Otherwise, return false.
+// In JavaScript, truthy values are values that translate to true when evaluated in a Boolean context.
+// Remember, you can access object properties through either dot notation or [] notation.
+function truthCheck(collection, pre) {
+    return collection.every(item => Boolean(item[pre]));
+}
+
+console.log('Truth Check: ', truthCheck([{ "user": "Tinky-Winky", "sex": "male" }, { "user": "Dipsy", "sex": "male" }, { "user": "Laa-Laa", "sex": "female" }, { "user": "Po", "sex": "female" }], "sex"));
+console.log('Boolean()', Boolean('false'), 'Number', Number('123'), 'String', String(123)); // Casting
+
+// Intermediate Algorithm Scripting: Arguments Optional
+// Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.
+// For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.
+// Calling this returned function with a single argument will then return the sum:
+// var sumTwoAnd = addTogether(2);
+// sumTwoAnd(3) returns 5.
+// If either argument isn't a valid number, return undefined.
+
+function addTogether() {
+    if (Object.values(arguments).every(item => typeof item == 'number')) {
+        if (arguments.length == 2) {
+            return arguments[0] + arguments[1];
+        }
+        if (arguments.length == 1) {
+            return (x) => (typeof x === 'number') ? x + arguments[0] : undefined;
+        }
+    }
+}
+
+console.log('Add Together: ', addTogether(2)(3));
+
+// Fill in the object constructor with the following methods below:
+// setFirstName(first)
+// setFullName(firstAndLast)
+
+var Person = function (firstAndLast) {
+    // Only change code below this line
+    // Complete the method below and implement the others similarly
+    this.getFullName = function () {
+        return firstAndLast;
+    };
+    this.setFirstName = function (first) {
+        //firstAndLast = first + ' ' + firstAndLast.split(' ')[1];
+        firstAndLast = firstAndLast.replace(/^([\w]+)/, first);
+    }
+    return firstAndLast;
+};
+
+var bob = new Person('Bob Ross');
+bob.setFirstName('Jess');
+console.log('Class method call: ', bob.getFullName());
+
+// Map the Debris
+// Return a new array that transforms the elements' average altitude into their orbital periods (in seconds).
+// The array will contain objects in the format {name: 'name', avgAlt: avgAlt}.
+// You can read about orbital periods on Wikipedia.
+// The values should be rounded to the nearest whole number. The body being orbited is Earth.
+// The radius of the earth is 6367.4447 kilometers, and the GM value of earth is 398600.4418 km3s-2.
+function orbitalPeriod(arr) {
+    var GM = 398600.4418;
+    var earthRadius = 6367.4447;
+    return arr.map(({ name, avgAlt }) => {
+        const orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow((earthRadius + avgAlt), 3) / GM));
+        return { name, orbitalPeriod }
+    });
+}
+
+console.log('Orbital Period: ', orbitalPeriod([{ name: "iss", avgAlt: 413.6 }, { name: "hubble", avgAlt: 556.7 }, { name: "moon", avgAlt: 378632.553 }]));

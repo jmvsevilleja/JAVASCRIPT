@@ -1,0 +1,12 @@
+function rot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return str.toUpperCase().split('').map(char=>{
+        const pos = alphabet.indexOf(char);
+        console.log(pos,'+', (pos + 13),'% 26 = ',(pos + 13) % 26, alphabet[(pos + 13) % 26])
+	// remainder of pos+shift is 0, 
+        return pos >= 0 ? alphabet[(pos + 13) % 26] : char;
+  }).join('');
+
+}
+
+console.log(rot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
