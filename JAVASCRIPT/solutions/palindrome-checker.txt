@@ -1,5 +1,7 @@
 function palindrome(str) {
+  // filter letters and numbers only
   let filtered = str.toLowerCase().match(/[a-z0-9]/g).join('').split('');
+  // check if every character is the same on the other end of string
   return filtered.every((char,index)=>char==filtered[filtered.length-index-1]);
 }
 console.log(palindrome("A man, a plan, a canal. Panama"));

@@ -1,0 +1,67 @@
+function checkCashRegister(price, cash, cid) {
+  let change = [];
+  let status = "OPEN";
+  let total_change =  cash - price;
+  let money = {
+    PENNY: 0.01,
+    NICKEL: 0.05,
+    DIME: 0.10,
+    QUARTER: 0.25,
+    ONE: 1,
+    FIVE: 5,
+    TEN: 10,
+    TWENTY: 20,
+    'ONE HUNDRED': 100,
+  };
+
+  // check close scenario
+  if(cid.reduce((sum,item)=>sum+item[1],0) == total_change){
+    return {
+      status: "CLOSED",
+      change: cid,
+    };
+  }
+
+  cid.reverse().some(item => {
+    let key = item[0];
+    let cash_register = item[1];
+
+    // give the right change checking the right money
+    if(total_change.toFixed(2) >= money[key]){
+      let money_change = 0;
+      // loop and subtract each money to the total change
+      while(total_change.toFixed(2) >= money[key]){
+          // break if there's no more change
+          if(cash_register-money[key] < 0){
+            break;
+          }
+          // add total change to give per money
+          money_change += money[key];
+          // remove money from cashier and change
+          total_change -= money[key];
+          cash_register -= money[key];
+      }
+      // push total change per money
+      if(money_change){
+        change.push([key,money_change]);
+      }
+    }
+  });
+
+  // total change is not met by money in register
+  if(total_change.toFixed(2) > 0) {
+    status = "INSUFFICIENT_FUNDS";
+    change = [];
+  }
+
+  return {
+    status: status,
+    change: change,
+  };
+}
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+console.log('---------------');
+console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+console.log('---------------');
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
