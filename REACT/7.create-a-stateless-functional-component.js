@@ -1,4 +1,5 @@
-// stateless component as one that can receive data and render it, but does not manage or track changes to that data
+// stateless component as one that can receive data and render it,
+// but does not manage or track changes to that data
 
 const MyComponent = function () {
   // Change code below this line
