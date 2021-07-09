@@ -9,6 +9,7 @@ class MyComponent extends React.Component {
     // class methods when the component is initialized
     this.handleClick = this.handleClick.bind(this);
   }
+  // writing methods that set state
   handleClick() {
     // Change code below this line
     // TODO: see batch state updates
@@ -21,6 +22,7 @@ class MyComponent extends React.Component {
   render() {
     return (
       <div>
+        {/* assigning click handlers to trigger methods */}
         <button onClick={this.handleClick}>Click Me</button>
         <h1>{this.state.name}</h1>
       </div>
