@@ -11,4 +11,4 @@ const loginAction = () => {
 // Dispatch the action here:
 store.dispatch(loginAction());
 
-// dispatch method is what you use to dispatch actions to the Redux store.
+// dispatch method is what you use to execute actions to the Redux store.
