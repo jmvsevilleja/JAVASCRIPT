@@ -23,12 +23,15 @@ const messageReducer = (state = [], action) => {
 const store = Redux.createStore(messageReducer);
 
 // React:
+const Provider = ReactRedux.Provider;
+const connect = ReactRedux.connect;
+
+// Change code below this line
 class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      messages: []
+      input: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
@@ -39,13 +42,11 @@ class Presentational extends React.Component {
     });
   }
   submitMessage() {
-    this.setState((state) => {
-      const currentMessage = state.input;
-      return {
-        input: '',
-        messages: state.messages.concat(currentMessage)
-      };
-    });
+    this.setState((state) => ({
+      input: ''
+    }));
+    // Use props to call Redux SubmitNewMessage
+    this.props.submitNewMessage(this.state.input);
   }
   render() {
     return (
@@ -56,7 +57,8 @@ class Presentational extends React.Component {
           onChange={this.handleChange} /><br />
         <button onClick={this.submitMessage}>Submit</button>
         <ul>
-          {this.state.messages.map((message, idx) => {
+          {/* use this.props to retrieve messages */}
+          {this.props.messages.map((message, idx) => {
             return (
               <li key={idx}>{message}</li>
             )
@@ -67,38 +69,25 @@ class Presentational extends React.Component {
     );
   }
 };
+// Change code above this line
 
-// React-Redux:
 const mapStateToProps = (state) => {
   return {messages: state}
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitNewMessage: (newMessage) => {
-      dispatch(addMessage(newMessage))
+    submitNewMessage: (message) => {
+      dispatch(addMessage(message))
     }
   }
 };
 
-//  The Provider is a wrapper component from React Redux that wraps your React app. This wrapper then allows you to access the Redux store and dispatch functions throughout your component tree.
-const Provider = ReactRedux.Provider;
-// connects Redux to React Presentational Component
-const connect = ReactRedux.connect;
+const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
-// child component of the Provider
-const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational)
-
-// Define the Container component here:
 class AppWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    // Complete the return statement:
     return (
-      // Provider takes two props, the Redux store and the child components of your app. Defining the Provider for an App component might look like this
-      //render the React Redux <Provider> component. Pass Provider the Redux store as a prop and render <Container> as a child
       <Provider store={store}>
         <Container />
       </Provider>
@@ -106,4 +95,4 @@ class AppWrapper extends React.Component {
   }
 };
 
-//container components are connected to Redux. These are typically responsible for dispatching actions to the store and often pass store state to child components as props.
+//You achieved the same result using only React's local state at first, and this is usually possible with simple apps. However, as your apps become larger and more complex, so does your state management, and this is the problem Redux solves.
